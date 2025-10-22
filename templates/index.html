@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero">
+    <h2>Verify Your Gaming Credentials</h2>
+    <p>Check if your Steam account meets the qualification criteria:</p>
+
+    <div class="criteria-grid">
+        <div class="criteria-card">
+            <h3>100+ Hours</h3>
+            <p>Total playtime across all games</p>
+        </div>
+        <div class="criteria-card">
+            <h3>10+ Achievements</h3>
+            <p>Unlocked achievements</p>
+        </div>
+        <div class="criteria-card">
+            <h3>3+ Games</h3>
+            <p>Each with more than 1 hour played</p>
+        </div>
+        <div class="criteria-card">
+            <h3>≤50% Single Game</h3>
+            <p>No more than half your time in one game</p>
+        </div>
+    </div>
+
+    {% if session.get('steam_id') %}
+    <div class="action-section">
+        <p>You're logged in! Ready to check your qualification status?</p>
+        <a href="{{ url_for('check') }}" class="btn btn-primary">Check My Status</a>
+    </div>
+    {% else %}
+    <div class="action-section">
+        <p>Login with Steam to get started</p>
+        <a href="{{ url_for('login') }}" class="btn btn-steam">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+            </svg>
+            Sign in through Steam
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

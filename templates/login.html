@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="auth-container">
+    <h2>Sign in with Steam</h2>
+    <p>You'll be redirected to Steam to authenticate your account.</p>
+
+    <form action="https://steamcommunity.com/openid/login" method="post" class="steam-form">
+        <input type="hidden" name="openid.ns" value="http://specs.openid.net/auth/2.0">
+        <input type="hidden" name="openid.mode" value="checkid_setup">
+        <input type="hidden" name="openid.return_to" value="{{ return_url }}">
+        <input type="hidden" name="openid.realm" value="{{ request.url_root }}">
+        <input type="hidden" name="openid.identity" value="http://specs.openid.net/auth/2.0/identifier_select">
+        <input type="hidden" name="openid.claimed_id" value="http://specs.openid.net/auth/2.0/identifier_select">
+
+        <button type="submit" class="btn btn-steam btn-large">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+            </svg>
+            Continue with Steam
+        </button>
+    </form>
+
+    <div class="divider">
+        <span>OR</span>
+    </div>
+
+    <p class="text-muted">For testing purposes, you can enter your Steam ID manually:</p>
+    <form action="{{ url_for('manual_auth') }}" method="post" class="manual-form">
+        <input type="text" name="steam_id" placeholder="Enter 17-digit Steam ID" pattern="[0-9]{17}" required>
+        <button type="submit" class="btn btn-secondary">Submit Steam ID</button>
+    </form>
+
+    <a href="{{ url_for('index') }}" class="back-link">← Back to home</a>
+</div>
+{% endblock %}

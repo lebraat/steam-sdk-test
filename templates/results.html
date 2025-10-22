@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="results-container">
+    <div class="results-header">
+        <h2>Qualification Results</h2>
+        <p class="steam-id">Steam ID: {{ steam_id }}</p>
+    </div>
+
+    <div class="qualification-status {% if results.qualifies %}qualified{% else %}not-qualified{% endif %}">
+        {% if results.qualifies %}
+        <svg class="status-icon" width="64" height="64" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+        </svg>
+        <h3>QUALIFIED</h3>
+        <p>Your account meets all criteria!</p>
+        {% else %}
+        <svg class="status-icon" width="64" height="64" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        </svg>
+        <h3>NOT QUALIFIED</h3>
+        <p>Your account does not meet all criteria yet</p>
+        {% endif %}
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card {% if results.playtime_100hrs %}passed{% else %}failed{% endif %}">
+            <div class="stat-header">
+                <h4>Total Playtime</h4>
+                {% if results.playtime_100hrs %}
+                <span class="badge success">✓</span>
+                {% else %}
+                <span class="badge failure">✗</span>
+                {% endif %}
+            </div>
+            <div class="stat-value">{{ results.total_playtime_hours }} hrs</div>
+            <div class="stat-requirement">Requirement: 100+ hours</div>
+            {% if not results.playtime_100hrs %}
+            <div class="stat-shortfall">Need {{ (100 - results.total_playtime_hours)|round(2) }} more hours</div>
+            {% endif %}
+        </div>
+
+        <div class="stat-card {% if results.achievements_10plus %}passed{% else %}failed{% endif %}">
+            <div class="stat-header">
+                <h4>Achievements</h4>
+                {% if results.achievements_10plus %}
+                <span class="badge success">✓</span>
+                {% else %}
+                <span class="badge failure">✗</span>
+                {% endif %}
+            </div>
+            <div class="stat-value">{{ results.total_achievements }}</div>
+            <div class="stat-requirement">Requirement: 10+ achievements</div>
+            {% if not results.achievements_10plus %}
+            <div class="stat-shortfall">Need {{ 10 - results.total_achievements }} more achievements</div>
+            {% endif %}
+        </div>
+
+        <div class="stat-card {% if results.games_3plus_over_1hr %}passed{% else %}failed{% endif %}">
+            <div class="stat-header">
+                <h4>Games Played</h4>
+                {% if results.games_3plus_over_1hr %}
+                <span class="badge success">✓</span>
+                {% else %}
+                <span class="badge failure">✗</span>
+                {% endif %}
+            </div>
+            <div class="stat-value">{{ results.games_over_1hr }}</div>
+            <div class="stat-requirement">Requirement: 3+ games with &gt;1 hour</div>
+            {% if not results.games_3plus_over_1hr %}
+            <div class="stat-shortfall">Need {{ 3 - results.games_over_1hr }} more games</div>
+            {% endif %}
+        </div>
+
+        <div class="stat-card {% if results.no_more_than_50pct_single_game %}passed{% else %}failed{% endif %}">
+            <div class="stat-header">
+                <h4>Game Diversity</h4>
+                {% if results.no_more_than_50pct_single_game %}
+                <span class="badge success">✓</span>
+                {% else %}
+                <span class="badge failure">✗</span>
+                {% endif %}
+            </div>
+            <div class="stat-value">{{ results.most_played_percentage }}%</div>
+            <div class="stat-requirement">Most played: {{ results.most_played_game }}</div>
+            <div class="stat-requirement">Requirement: ≤50% in single game</div>
+            {% if not results.no_more_than_50pct_single_game %}
+            <div class="stat-shortfall">Over by {{ (results.most_played_percentage - 50)|round(2) }}%</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="actions">
+        <a href="{{ url_for('index') }}" class="btn btn-primary">Back to Home</a>
+        <a href="{{ url_for('logout') }}" class="btn btn-secondary">Logout</a>
+    </div>
+</div>
+{% endblock %}

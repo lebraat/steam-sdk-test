@@ -1,0 +1,471 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #1b2838;
+    --secondary: #2a475e;
+    --steam-blue: #1b2838;
+    --steam-light: #66c0f4;
+    --success: #5cb85c;
+    --danger: #d9534f;
+    --warning: #f0ad4e;
+    --text: #c7d5e0;
+    --text-dark: #1b2838;
+    --background: #1b2838;
+    --card-bg: #16202d;
+    --border: #2a475e;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #1b2838 0%, #2a475e 100%);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    background: rgba(22, 32, 45, 0.95);
+    padding: 1rem 0;
+    border-bottom: 2px solid var(--steam-light);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h1 {
+    color: var(--steam-light);
+    font-size: 1.5rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+main {
+    flex: 1;
+}
+
+.hero {
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    color: var(--steam-light);
+    margin-bottom: 1rem;
+}
+
+.hero > p {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    color: var(--text);
+}
+
+.criteria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.criteria-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 2px solid var(--border);
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.criteria-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--steam-light);
+}
+
+.criteria-card h3 {
+    color: var(--steam-light);
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.criteria-card p {
+    color: var(--text);
+}
+
+.action-section {
+    margin-top: 2rem;
+}
+
+.action-section p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background: var(--steam-light);
+    color: var(--text-dark);
+}
+
+.btn-primary:hover {
+    background: #5ab3e0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 192, 244, 0.4);
+}
+
+.btn-secondary {
+    background: var(--secondary);
+    color: var(--text);
+}
+
+.btn-secondary:hover {
+    background: #3d5a73;
+}
+
+.btn-steam {
+    background: linear-gradient(135deg, #2a475e 0%, #1b2838 100%);
+    color: var(--steam-light);
+    border: 2px solid var(--steam-light);
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+}
+
+.btn-steam:hover {
+    background: linear-gradient(135deg, #3d5a73 0%, #2a475e 100%);
+    box-shadow: 0 6px 20px rgba(102, 192, 244, 0.3);
+}
+
+.btn-large {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+}
+
+.auth-container {
+    max-width: 500px;
+    margin: 3rem auto;
+    background: var(--card-bg);
+    padding: 3rem;
+    border-radius: 12px;
+    border: 2px solid var(--border);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.auth-container h2 {
+    color: var(--steam-light);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.auth-container > p {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.steam-form, .manual-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.manual-form input[type="text"] {
+    padding: 0.75rem;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    background: var(--primary);
+    color: var(--text);
+    font-size: 1rem;
+}
+
+.manual-form input[type="text"]:focus {
+    outline: none;
+    border-color: var(--steam-light);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    color: var(--steam-light);
+    font-weight: 600;
+}
+
+.form-group small {
+    color: var(--text);
+    font-size: 0.875rem;
+}
+
+.form-group small a {
+    color: var(--steam-light);
+}
+
+.divider {
+    margin: 2rem 0;
+    text-align: center;
+    position: relative;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--border);
+}
+
+.divider span {
+    background: var(--card-bg);
+    padding: 0 1rem;
+    position: relative;
+    color: var(--text);
+}
+
+.text-muted {
+    color: var(--text);
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 2rem;
+    color: var(--steam-light);
+    text-decoration: none;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.results-container {
+    max-width: 900px;
+    margin: 2rem auto;
+}
+
+.results-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.results-header h2 {
+    color: var(--steam-light);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.steam-id {
+    color: var(--text);
+    font-family: monospace;
+}
+
+.qualification-status {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 3rem;
+}
+
+.qualification-status.qualified {
+    background: rgba(92, 184, 92, 0.1);
+    border: 2px solid var(--success);
+}
+
+.qualification-status.not-qualified {
+    background: rgba(217, 83, 79, 0.1);
+    border: 2px solid var(--danger);
+}
+
+.qualification-status.qualified h3 {
+    color: var(--success);
+}
+
+.qualification-status.not-qualified h3 {
+    color: var(--danger);
+}
+
+.status-icon {
+    margin-bottom: 1rem;
+}
+
+.qualification-status.qualified .status-icon {
+    color: var(--success);
+}
+
+.qualification-status.not-qualified .status-icon {
+    color: var(--danger);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 2px solid var(--border);
+}
+
+.stat-card.passed {
+    border-color: var(--success);
+    background: rgba(92, 184, 92, 0.05);
+}
+
+.stat-card.failed {
+    border-color: var(--danger);
+    background: rgba(217, 83, 79, 0.05);
+}
+
+.stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.stat-header h4 {
+    color: var(--steam-light);
+    font-size: 1.1rem;
+}
+
+.badge {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.875rem;
+}
+
+.badge.success {
+    background: var(--success);
+    color: white;
+}
+
+.badge.failure {
+    background: var(--danger);
+    color: white;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--steam-light);
+    margin-bottom: 0.5rem;
+}
+
+.stat-requirement {
+    color: var(--text);
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.stat-shortfall {
+    color: var(--danger);
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    font-weight: 600;
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.error-container {
+    max-width: 500px;
+    margin: 3rem auto;
+    background: var(--card-bg);
+    padding: 3rem;
+    border-radius: 12px;
+    border: 2px solid var(--danger);
+    text-align: center;
+}
+
+.error-icon {
+    color: var(--danger);
+    margin-bottom: 1rem;
+}
+
+.error-container h2 {
+    color: var(--danger);
+    margin-bottom: 1rem;
+}
+
+.error-message {
+    color: var(--text);
+    margin-bottom: 2rem;
+}
+
+footer {
+    background: rgba(22, 32, 45, 0.95);
+    padding: 1.5rem 0;
+    text-align: center;
+    border-top: 2px solid var(--steam-light);
+    margin-top: 3rem;
+}
+
+footer p {
+    color: var(--text);
+    font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    .criteria-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .navbar .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+}
