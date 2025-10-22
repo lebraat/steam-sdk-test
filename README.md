@@ -9,6 +9,34 @@ Verifies if a Steam account meets specific gaming criteria using the Steam Web A
 - 3+ games with >1 hour each
 - No more than 50% playtime in single game
 
+## Prerequisites
+
+Before using this tool, you need:
+
+### 1. Steam Account
+- Create a free account at https://store.steampowered.com/
+- Play some games to meet the qualification criteria
+
+### 2. Steam Mobile App & Authenticator (Required for API Key)
+- Download the **Steam Mobile App** ([iOS](https://apps.apple.com/us/app/steam-mobile/id495369748) | [Android](https://play.google.com/store/apps/details?id=com.valvesoftware.android.steam.community))
+- Enable **Steam Guard Mobile Authenticator** in the app
+- **Important:** You MUST have the mobile authenticator enabled for at least 7 days to register for a Steam API key
+
+### 3. Steam API Key
+- After 7+ days with mobile authenticator enabled, visit: https://steamcommunity.com/dev/apikey
+- Enter a domain name (can be `localhost` for testing)
+- Copy your API key (a 32-character hex string)
+
+### 4. Steam ID (64-bit)
+- Go to https://steamid.io/
+- Enter your Steam profile URL or username
+- Copy your **steamID64** (17-digit number starting with 7656119...)
+
+### 5. Privacy Settings
+- Go to your Steam Profile → Edit Profile → Privacy Settings
+- Set **Game details** to **Public**
+- This is required for the API to access your gaming data
+
 ## Two Usage Options
 
 ### Option 1: Web App (Recommended)
@@ -25,7 +53,7 @@ A user-friendly web interface with Steam login.
    STEAM_API_KEY=your_api_key_here
    FLASK_SECRET_KEY=your_random_secret_key
    ```
-   Get your Steam API Key at https://steamcommunity.com/dev/apikey
+   Replace with your actual Steam API key from step 3 in Prerequisites
 
 3. **Run the web app:**
    ```bash
@@ -53,8 +81,7 @@ Direct Python script for quick checks.
    STEAM_API_KEY=your_api_key_here
    STEAM_ID=your_steam_id_here
    ```
-   - Get Steam API Key: https://steamcommunity.com/dev/apikey
-   - Find Steam ID: https://steamid.io/
+   Replace with your Steam API key (step 3) and Steam ID (step 4) from Prerequisites
 
 3. **Run the checker:**
    ```bash
