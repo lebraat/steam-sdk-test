@@ -40,7 +40,7 @@ export const PlatformDetails: PlatformSpec = {
   platform: "Steam",
   name: "Steam",
   description: "Verify your Steam gaming credentials and activity",
-  connectMessage: "Connect Account",
+  connectMessage: "Check Eligibility",
   website: "https://steamcommunity.com/",
   timeToGet: "2-3 minutes",
   price: "Free",
@@ -50,7 +50,7 @@ export const PlatformDetails: PlatformSpec = {
       items: [
         {
           title: "Step 1",
-          description: "Ensure your Steam profile Game Details are set to Public in Privacy Settings.",
+          description: "Ensure your Steam Profile and Game Details are both set to Public in Privacy Settings.",
           actions: [
             {
               label: "Steam Privacy Settings",
@@ -60,7 +60,7 @@ export const PlatformDetails: PlatformSpec = {
         },
         {
           title: "Step 2",
-          description: "Click 'Connect Account' to authenticate with Steam using OpenID.",
+          description: "Click 'Check Eligibility' to connect and verify your Steam account.",
         },
         {
           title: "Step 3",
@@ -72,11 +72,11 @@ export const PlatformDetails: PlatformSpec = {
       type: "list",
       title: "Important considerations",
       items: [
-        "Your Steam profile's Game Details must be set to Public for verification to work",
+        "Both your Steam Profile and Game Details must be set to Public for verification to work",
         "Verification checks your total playtime, achievements, and game diversity",
         "You must meet ALL four criteria to receive this stamp",
-        "Data is fetched in real-time from Steam's API during verification",
         "Private profiles or profiles without sufficient gaming history will not qualify",
+        "Your privacy settings can be changed back to private after verification is complete",
       ],
     },
   ],
@@ -406,15 +406,16 @@ const platforms: Record<string, PlatformConfig> = {
 ### 5.1 Privacy & User Requirements
 
 **Critical Requirements:**
-- Steam profile **Game Details must be Public**
+- Steam **Profile** and **Game Details** must both be set to Public
 - This is NOT the default setting for many users
 - Private profiles will fail verification
 - Clear instructions needed in UI
 
 **User Communication:**
 - Provide direct link to Steam Privacy Settings
-- Explain WHY this is needed (API access)
+- Explain WHY this is needed (to verify your gaming activity)
 - Reassure users about data usage
+- Note that settings can be changed back to private after verification
 - Offer link to Steam's privacy documentation
 
 ### 5.2 Edge Cases to Handle
